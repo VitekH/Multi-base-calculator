@@ -28,17 +28,17 @@ function zmackl_mazat() {
     }
 }
 function zmackl_rovna_se(){
-    if(isNaN(priklad.indexOf("+"))==false) {
-        let znamenko = priklad.indexOf("+")
+    if(priklad.includes("+")==true) {
+        var znamenko = priklad.indexOf("+")
     }
-    if(isNaN(priklad.indexOf("-"))==false) {
-        znamenko = priklad.indexOf("-")
+    if(priklad.includes("-")==true) {
+        var znamenko = priklad.indexOf("-")
     }
-     if(isNaN(priklad.indexOf("÷"))==false) {
-        znamenko = priklad.indexOf("÷")
+    if(priklad.includes("÷")==true) {
+        var znamenko = priklad.indexOf("÷")
     }
-    if(isNaN(priklad.indexOf("*"))==false) {
-        znamenko = priklad.indexOf("*")
+    if(priklad.includes("*")==true) {
+        var znamenko = priklad.indexOf("*")
     }
     let n=0;
     let krok=0;
@@ -54,17 +54,14 @@ function zmackl_rovna_se(){
         krok = priklad[pozice];
         y += krok*(soustava**n);
     }
-    if(isNaN(priklad.indexOf("+"))==false) {
-        z=x+y
-    }
-    if(isNaN(priklad.indexOf("-"))==false) {
-        z=x-y
-    }
-    if(isNaN(priklad.indexOf("÷"))==false) {
-        z=x/y
-    }
-    if(isNaN(priklad.indexOf("+"))==false) {
-        z=x*y
+    if(priklad.includes("+")==true) {
+        var z=x+y
+    } else if(priklad.includes("-")==true) {
+        var z=x-y
+    } else if(priklad.includes("÷")==true) {
+        var z=x/y
+    } else if(priklad.includes("*")==true) {
+        var z=x*y
     }     
     
     
@@ -86,8 +83,7 @@ function zmackl_submitsoustava(){
 	for (let i = 0; i < soustava; i++){
 	puzzle += "<button type=\"button\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"
 	}
-	document.querySelector(".buttons").innerHTML = puzzle+"<button type=\"button\" id=\"+\" onclick=\"zmackl_tlacitko(this)\">+</button>"+"<button type=\"button\" id=\"-\" onclick=\"zmackl_tlacitko(this)\">-</button>"
-    +"<button type=\"button\" id=\"÷\" onclick=\"zmackl_tlacitko(this)\">÷</button>"+"<button type=\"button\" id=\"*\" onclick=\"zmackl_tlacitko(this)\">*</button>"
+	document.querySelector(".buttons").innerHTML = puzzle+"<button type=\"button\" id=\"+\" onclick=\"zmackl_tlacitko(this)\">+</button>"+"<button type=\"button\" id=\"-\" onclick=\"zmackl_tlacitko(this)\">-</button>"+"<button type=\"button\" id=\"÷\" onclick=\"zmackl_tlacitko(this)\">÷</button>"+"<button type=\"button\" id=\"*\" onclick=\"zmackl_tlacitko(this)\">*</button>"
 	
 }
 
