@@ -79,12 +79,15 @@ function zmackl_submitsoustava(){
     else{
         document.getElementById("showsoustava").innerHTML = "Soustava: " + soustava;
     }
-	let puzzle = ""
-	for (let i = 0; i < soustava; i++){
-	puzzle += "<td style=\"width:25%\">"+"<button type=\"button\" class=\"button\" style=\"width:100%\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"+"</td>"
-	
-	}
-	document.querySelector(".buttons").innerHTML = puzzle
-}
-const windowWidth = window.innerWidth;
+	let puzzle = "<tr>"
+    for (let i = 0; i < soustava; i++){
+        if(i%4==0){
+            puzzle += "</tr>"+"<tr>"+"<td style=\"width:25%\">"+"<button type=\"button\" class=\"button\" style=\"width:100%\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"+"</td>"
+        }
+        else{
+            puzzle += "<td style=\"width:25%\">"+"<button type=\"button\" class=\"button\" style=\"width:100%\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"+"</td>"  
+        }
+    }
+    document.querySelector(".buttons").innerHTML = puzzle+"<tr><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"+\" onclick=\"zmackl_tlacitko(this)\">+</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"-\" onclick=\"zmackl_tlacitko(this)\">-</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"*\" onclick=\"zmackl_tlacitko(this)\">*</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"÷\" onclick=\"zmackl_tlacitko(this)\">÷</button></td></tr>"+"</tr>"
+    }
 console.clear()
