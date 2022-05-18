@@ -81,10 +81,10 @@ function zmackl_submitsoustava(){
     }
 	let puzzle = ""
 	for (let i = 0; i < soustava; i++){
-	puzzle += "<button type=\"button\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"
-	}
-	document.querySelector(".buttons").innerHTML = puzzle+"<button type=\"button\" id=\"+\" onclick=\"zmackl_tlacitko(this)\">+</button>"+"<button type=\"button\" id=\"-\" onclick=\"zmackl_tlacitko(this)\">-</button>"+"<button type=\"button\" id=\"÷\" onclick=\"zmackl_tlacitko(this)\">÷</button>"+"<button type=\"button\" id=\"*\" onclick=\"zmackl_tlacitko(this)\">*</button>"
+	puzzle += "<td style=\"width:25%\">"+"<button type=\"button\" class=\"button\" style=\"width:100%\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"+"</td>"
 	
+	}
+	document.querySelector(".buttons").innerHTML = puzzle
 }
-
+const windowWidth = window.innerWidth;
 console.clear()

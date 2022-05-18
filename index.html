@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>KALKULAČKA</title>
+<link rel="stylesheet" href="main.css">
 </head>
 <body>
     
@@ -17,17 +18,40 @@
 		<option value=10>10</option>
 
 	</select>
-    <!--<input type="text" id="soustava" name="soustava" placeholder="Enter a valid number"> -->
-    <input type="submit" id="submitsoustava">
+    <input type="submit" class="button" id="submitsoustava">
     <p id="showsoustava"></p>
 	<div class="abc">
 	</div>
 	</br>
-    <div class="buttons">
-	</div>
-	<button type="button" id="=" >=</button>
-	<button type="button" id="C" >C</button>
-	<button type="button" id="mazat">delete</button>
+		<table>
+			<tr class="buttons">
+			</tr>
+			<tr>
+				<td style="width:25%">
+					<button type="button" class="button" style="width:100%" id="+" onclick="zmackl_tlacitko(this)">+</button>
+				</td>
+				<td style="width:25%">
+					<button type="button" class="button" style="width:100%" id="-" onclick="zmackl_tlacitko(this)">-</button>
+				</td>
+				<td style="width:25%">
+					<button type="button" class="button" style="width:100%" id="*" onclick="zmackl_tlacitko(this)">*</button>
+				</td>
+				<td style="width:25%">
+					<button type="button" class="button" style="width:100%" id="÷" onclick="zmackl_tlacitko(this)">÷</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="width:25%">
+					<button type="button" class="button" style="width:100%" id="=" >=</button>
+				</td>
+				<td style="width:25%">
+					<button type="button" class="button" style="width:100%" id="C">C</button>
+				</td>
+				<td style="width:25%">
+					<button type="button" class="button" style="width:100%" id="mazat">DEL</button>
+				</td>
+			</tr>
+	</table>
 <script src="./myscripts.js"></script>
 </body>
 </html>
