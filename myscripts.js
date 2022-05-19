@@ -28,18 +28,7 @@ function zmackl_mazat() {
     }
 }
 function zmackl_rovna_se(){
-    if(priklad.includes("+")==true) {
-        var znamenko = priklad.indexOf("+")
-    }
-    if(priklad.includes("-")==true) {
-        var znamenko = priklad.indexOf("-")
-    }
-    if(priklad.includes("÷")==true) {
-        var znamenko = priklad.indexOf("÷")
-    }
-    if(priklad.includes("*")==true) {
-        var znamenko = priklad.indexOf("*")
-    }
+
     let n=0;
     let krok=0;
     let x=0;
@@ -63,9 +52,32 @@ function zmackl_rovna_se(){
     } else if(priklad.includes("*")==true) {
         var z=x*y
     }     
-    
-    
     priklad.push("=")
+    var znamenka = ["start"]
+    for(letter in priklad){
+        if(priklad[letter] == "+") {
+            znamenka.push(letter)
+            var znamenko = priklad.indexOf("+")
+        }
+        if(priklad[letter] == "-") {
+            znamenka.push(letter)
+            var znamenko = priklad.indexOf("-")
+        }
+        if(priklad[letter] == "*") {
+            znamenka.push(letter)
+            var znamenko = priklad.indexOf("*")
+        }
+        if(priklad[letter] == "÷") {
+            znamenka.push(letter)
+            var znamenko = priklad.indexOf("÷")
+        }
+        if(priklad[letter] == "="){
+            znamenka.push(letter)
+        }
+        console.log(letter)
+        
+    }
+    console.log(znamenka)
     priklad.push(z.toString(soustava))
     document.querySelector(".abc").innerHTML = priklad.join("");
     priklad = [];
