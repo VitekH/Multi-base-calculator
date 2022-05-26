@@ -13,6 +13,19 @@ function zmackl_tlacitko(button){
     priklad.push(button.id);
     document.querySelector(".abc").innerHTML = priklad.join("");
 }
+function zmackl_znamenko(button){
+    if(priklad.length == 0){
+        alert("Nejdrive cislo")
+    }
+    else{
+        if ("+-*÷".includes(priklad[priklad.length-1])){
+            priklad.pop()
+        }
+        priklad.push(button.id)
+        document.querySelector(".abc").innerHTML = priklad.join("");
+    }
+    
+}
 function zmackl_C(){
     priklad = [];
     document.querySelector(".abc").innerHTML = priklad.join("");
@@ -28,8 +41,9 @@ function zmackl_mazat() {
     }
 }
 function zmackl_rovna_se(){
-    var znamenka = []
-
+    priklad.push("=")
+    var znamenka = [-1];
+    var mezivysledek = 0;
     for(let j = 0; j < priklad.length; j++){
         if(priklad[j] == "+") {
             znamenka.push(j)
@@ -48,22 +62,151 @@ function zmackl_rovna_se(){
         }
         console.log(j)
     }
-    znamenka.push(priklad.length)
+    //znamenka.push(priklad.length)
+    console.log(priklad)
     console.log(znamenka)
+// priklad: 1,1,+,1,1,=
+// znamenka: -1,2,5
+//(5-2)-1
+    let cinitel = 0;
+    var vysledek = [];
+    for(var w = 0; w < znamenka.length-1; w++){
+        
+        var prvni = znamenka[w];
+        var druhy = znamenka[w+1];
+        var u = 1;
+        let q = 0;
+        for(var u = 1; u <= druhy-prvni-1; u++){
+            console.log("tady")
+            cinitel +=(priklad[druhy-u])*(soustava**q)
+            console.log(cinitel)
+            q++
+        }
+        if(prvni == -1){
+            vysledek.push(cinitel)
+        }
+        else{
+            priklad[prvni]
+            switch (priklad[prvni]) {
+                case "+":
+                case "-":
+                    vysledek.push(priklad[prvni])
+                    vysledek.push(cinitel)
+                    break;
+                case "*":
+                    vysledek[vysledek.length-1] *= cinitel;
+                    break;
+                case "÷":
+                    vysledek[vysledek.length-1] /= cinitel;
+                    break;
+            
+                default:
+                    //chyba
+                    break;
+            }
+        }
+        cinitel = 0;
+    }
+    mezivysledek=vysledek[0]
+    for(var w = 1; w < vysledek.length; w++){
+        switch (vysledek[w]) {
+            case "+":
+                mezivysledek+=vysledek[++w]     
+                break;
+            case "-":
+                mezivysledek-=vysledek[++w]
+                break;
 
-    var u = 1;
-    let vypocet = 0;
-    let q = 0;
-    for(var u = 1; u <= znamenka[0]; u++){
-        console.log("tady")
-        vypocet +=(priklad[znamenka[0]-u])*(soustava**q)
-        console.log(vypocet)
-        q++
+            default:
+                //error
+                break;
+        }
+    }
+    
+    //console.log(cinitel.toString(soustava))
+
+    priklad.push(mezivysledek.toString(soustava))
+    document.querySelector(".abc").innerHTML = priklad.join("");
+    priklad = [];
+
+}
+function zmackl_rovna_se_bezprednosti(){
+    priklad.push("=")
+    var znamenka = [-1];
+    var mezivysledek = 0;
+    for(let j = 0; j < priklad.length; j++){
+        if(priklad[j] == "+") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "-") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "*") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "÷") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "="){
+            znamenka.push(j)
+        }
+        console.log(j)
+    }
+    //znamenka.push(priklad.length)
+    console.log(priklad)
+    console.log(znamenka)
+// priklad: 1,1,+,1,1,=
+// znamenka: -1,2,5
+//(5-2)-1
+    let cinitel = 0;
+    for(var w = 0; w < znamenka.length-1; w++){
+        
+        var prvni = znamenka[w];
+        var druhy = znamenka[w+1];
+        var u = 1;
+        let q = 0;
+        for(var u = 1; u <= druhy-prvni-1; u++){
+            console.log("tady")
+            cinitel +=(priklad[druhy-u])*(soustava**q)
+            console.log(cinitel)
+            q++
+        }
+        if(prvni == -1){
+            mezivysledek=cinitel;
+        }
+        else{
+            priklad[prvni]
+            switch (priklad[prvni]) {
+                case "+":
+                    mezivysledek += cinitel;
+                    break;
+                case "-":
+                    mezivysledek -= cinitel;
+                    break;
+                case "*":
+                    mezivysledek *= cinitel;
+                    break;
+                case "÷":
+                    mezivysledek /= cinitel;
+                    break;
+            
+                default:
+                    //chyba
+                    break;
+            }
+        }
+        cinitel = 0;
     }
 
     
-    console.log(vypocet.toString(soustava))
+    //console.log(cinitel.toString(soustava))
 
+    priklad.push(mezivysledek.toString(soustava))
+    document.querySelector(".abc").innerHTML = priklad.join("");
+    priklad = [];
+
+}
+function nepouzivana(){
     if(priklad.includes("+")==true) {
         var znamenko = priklad.indexOf("+")
     }
@@ -121,6 +264,6 @@ function zmackl_submitsoustava(){
             puzzle += "<td style=\"width:25%\">"+"<button type=\"button\" class=\"button\" style=\"width:100%\" id="+i+" onclick=\"zmackl_tlacitko(this)\">"+i+"</button>"+"</td>"  
         }
     }
-    document.querySelector(".buttons").innerHTML = puzzle+"<tr><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"+\" onclick=\"zmackl_tlacitko(this)\">+</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"-\" onclick=\"zmackl_tlacitko(this)\">-</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"*\" onclick=\"zmackl_tlacitko(this)\">*</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"÷\" onclick=\"zmackl_tlacitko(this)\">÷</button></td></tr>"+"</tr>"
+    document.querySelector(".buttons").innerHTML = puzzle+"<tr><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"+\" onclick=\"zmackl_znamenko(this)\">+</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"-\" onclick=\"zmackl_znamenko(this)\">-</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"*\" onclick=\"zmackl_znamenko(this)\">*</button></td><td style=\"width:25%\"><button type=\"button\" class=\"button\" style=\"width:100%\" id=\"÷\" onclick=\"zmackl_znamenko(this)\">÷</button></td></tr>"+"</tr>"
     }
 console.clear()
