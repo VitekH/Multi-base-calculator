@@ -28,7 +28,54 @@ function zmackl_mazat() {
     }
 }
 function zmackl_rovna_se(){
+    var znamenka = []
 
+    for(let j = 0; j < priklad.length; j++){
+        if(priklad[j] == "+") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "-") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "*") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "÷") {
+            znamenka.push(j)
+        }
+        if(priklad[j] == "="){
+            znamenka.push(j)
+        }
+        console.log(j)
+    }
+    znamenka.push(priklad.length)
+    console.log(znamenka)
+
+    var u = 1;
+    let vypocet = 0;
+    let q = 0;
+    for(var u = 1; u <= znamenka[0]; u++){
+        console.log("tady")
+        vypocet +=(priklad[znamenka[0]-u])*(soustava**q)
+        console.log(vypocet)
+        q++
+    }
+
+    
+    console.log(vypocet.toString(soustava))
+
+    if(priklad.includes("+")==true) {
+        var znamenko = priklad.indexOf("+")
+    }
+    if(priklad.includes("-")==true) {
+        var znamenko = priklad.indexOf("-")
+    }
+    if(priklad.includes("÷")==true) {
+        var znamenko = priklad.indexOf("÷")
+    }
+    if(priklad.includes("*")==true) {
+        var znamenko = priklad.indexOf("*")
+    }
     let n=0;
     let krok=0;
     let x=0;
@@ -51,40 +98,14 @@ function zmackl_rovna_se(){
         var z=x/y
     } else if(priklad.includes("*")==true) {
         var z=x*y
-    }     
-    priklad.push("=")
-    var znamenka = ["start"]
-    for(letter in priklad){
-        if(priklad[letter] == "+") {
-            znamenka.push(letter)
-            var znamenko = priklad.indexOf("+")
-        }
-        if(priklad[letter] == "-") {
-            znamenka.push(letter)
-            var znamenko = priklad.indexOf("-")
-        }
-        if(priklad[letter] == "*") {
-            znamenka.push(letter)
-            var znamenko = priklad.indexOf("*")
-        }
-        if(priklad[letter] == "÷") {
-            znamenka.push(letter)
-            var znamenko = priklad.indexOf("÷")
-        }
-        if(priklad[letter] == "="){
-            znamenka.push(letter)
-        }
-        console.log(letter)
-        
     }
-    console.log(znamenka)
+    priklad.push("=")
     priklad.push(z.toString(soustava))
     document.querySelector(".abc").innerHTML = priklad.join("");
     priklad = [];
 }
 function zmackl_submitsoustava(){
     soustava = document.getElementById("soustava").value;
-    //document.getElementById("soustava").value = ''
     if (isNaN(soustava)){
         alert("Enter a valid number")
     }
