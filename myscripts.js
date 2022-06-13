@@ -11,7 +11,7 @@ document.querySelector("#mazat").onclick = zmackl_mazat
 var priklad = [];
 function zmackl_tlacitko(button){
 	console.log(pismena_soustava.indexOf(button.id))
-    priklad.push(pismena_soustava.indexOf(button.id));
+    priklad.push(button.id);
     document.querySelector(".abc").innerHTML = priklad.join("");
 }
 function zmackl_znamenko(button){
@@ -44,7 +44,6 @@ function zmackl_mazat() {
 function zmackl_rovna_se(){
     priklad.push("=")
     var znamenka = [-1];
-    var mezivysledek = 0;
     for(let j = 0; j < priklad.length; j++){
         if(priklad[j] == "+") {
             znamenka.push(j)
@@ -72,21 +71,17 @@ function zmackl_rovna_se(){
     let cinitel = 0;
     var vysledek = [];
     for(var w = 0; w < znamenka.length-1; w++){
-        
         var prvni = znamenka[w];
         var druhy = znamenka[w+1];
-        var u = 1;
         let q = 0;
         for(var u = 1; u <= druhy-prvni-1; u++){
             let w = priklad[druhy-u].toString();
-            cinitel +=(pismena_soustava.indexOf(w))*(soustava**q)
-            q++
+            cinitel += (pismena_soustava.indexOf(w))*(soustava**q);
+            q++;
         }
-        if(prvni == -1){
+        if(prvni == -1) {
             vysledek.push(cinitel)
-        }
-        else{
-            priklad[prvni]
+        } else{
             switch (priklad[prvni]) {
                 case "+":
                 case "-":
@@ -107,7 +102,7 @@ function zmackl_rovna_se(){
         }
         cinitel = 0;
     }
-    mezivysledek=vysledek[0]
+    var mezivysledek=vysledek[0]
     for(var w = 1; w < vysledek.length; w++){
         switch (vysledek[w]) {
             case "+":
@@ -126,10 +121,9 @@ function zmackl_rovna_se(){
     //console.log(cinitel.toString(soustava))
     serazeni = [];
     console.log(mezivysledek)
-    let p = 0;
     if (mezivysledek > 0){
         while(mezivysledek != 0){
-            p = mezivysledek % soustava
+            let p = mezivysledek % soustava
             serazeni.push(p)
             mezivysledek = (mezivysledek - p)/soustava
         }
