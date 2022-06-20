@@ -117,30 +117,15 @@ function zmackl_rovna_se(){
                 break;
         }
     }
-    // NEFUNKCNI
-    //console.log(cinitel.toString(soustava))
-    serazeni = [];
-    console.log(mezivysledek)
-    if (mezivysledek > 0){
-        while(mezivysledek != 0){
-            if(mezivysledek > soustava){
-                let p = mezivysledek%soustava
-                console.log(p)
-                serazeni.push(pismena_soustava(p))
-                mezivysledek -= Math.floor(mezivysledek/soustava)+p
-            }
-            else if(mezivysledek == soustava){
-                serazeni.reverse()
-            }
-            else{
-                serazeni.push(pismena_soustava(mezivysledek))
-            }
-        }
+    let vysledek = [];
+    while (mezivysledek<0) {
+        let mod = mezivysledek % soustava;
+        vysledek.push(mod)
+        mezivysledek -= mod;
+        mezivysledek /= soustava
     }
-    priklad.push((serazeni.reverse().join('')))
-    document.querySelector(".abc").innerHTML = priklad.join("");
-    priklad = [];
-    //KONEC NEFUNKCNI
+    priklad.push((vysledek.reverse().join('')))
+
 }
 
 function zmackl_submitsoustava(){
