@@ -69,7 +69,7 @@ function zmackl_rovna_se(){
 // znamenka: -1,2,5
 //(5-2)-1
     let cinitel = 0;
-    var vysledek = [];
+    let vysledek = [];
     for(var w = 0; w < znamenka.length-1; w++){
         var prvni = znamenka[w];
         var druhy = znamenka[w+1];
@@ -117,14 +117,14 @@ function zmackl_rovna_se(){
                 break;
         }
     }
-    let vysledek = [];
+    let vysledek1 = [];
     while (mezivysledek<0) {
         let mod = mezivysledek % soustava;
-        vysledek.push(mod)
+        vysledek1.push(mod)
         mezivysledek -= mod;
         mezivysledek /= soustava
     }
-    priklad.push((vysledek.reverse().join('')))
+    priklad.push((vysledek1.reverse().join('')))
 
 }
 
