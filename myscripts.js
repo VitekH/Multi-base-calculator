@@ -60,7 +60,6 @@ function zmackl_rovna_se(){
         if(priklad[j] == "="){
             znamenka.push(j)
         }
-        console.log(j)
     }
     //znamenka.push(priklad.length)
     console.log(priklad)
@@ -84,7 +83,7 @@ function zmackl_rovna_se(){
         } else{
             switch (priklad[prvni]) {
                 case "+":
-                case "-":
+                    case "-":
                     vysledek.push(priklad[prvni])
                     vysledek.push(cinitel)
                     break;
@@ -117,14 +116,27 @@ function zmackl_rovna_se(){
                 break;
         }
     }
-    let vysledek1 = [];
-    while (mezivysledek<0) {
-        let mod = mezivysledek % soustava;
-        vysledek1.push(mod)
-        mezivysledek -= mod;
-        mezivysledek /= soustava
+    let m = mezivysledek;
+    //console.log('here')
+    //console.log(mezivysledek)
+    
+    if (m != 0){
+        let vysledek1 = [];
+        while (mezivysledek!=0) {
+            let mod = mezivysledek % soustava;
+            vysledek1.push(mod)
+            mezivysledek = mezivysledek-mod;
+            mezivysledek = mezivysledek/soustava;
+            let push = (vysledek1.reverse()).join('');
+            priklad.push(push);
+            document.querySelector(".abc").innerHTML = priklad.join("");
+        }
     }
-    priklad.push((vysledek1.reverse().join('')))
+    else if(m==0){
+        priklad.push("0");
+        document.querySelector(".abc").innerHTML = priklad.join("");
+    }
+
 
 }
 
